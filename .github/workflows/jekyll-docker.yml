@@ -1,0 +1,40 @@
+name: Jekyll site CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the site in the jekyll/builder container
+      run: |
+        docker run \
+        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+<html>
+<head>
+     <meta charset="UTF-8">
+    <img src="Signos.jpg.webp" height="35%" width="100%">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <h1 style="color: plum;"> Descubra seu signo</h1>
+
+     <body style="background-color: ghostwhite;">
+        <h2 style="color: plum;">Como funciona, você coloca a sua data de nascimento e pronto!!</h2>
+        <form name="form" action="signosMC.php" method="post">
+            <hotpink style="color: plum;">Data de nascimento</label><br>
+            <input type="date" name="datanat" value="Data não informada"><br><br> 
+            <input type="submit" name="Enviar Dados" style="color: rgb(240, 119, 180); value="Enviar">
+            <input type="reset" nome="resetar" style="color: hotpink; value="Cancelar"> 
+            </div>
+        </form>
+    </body>
+
+</html>
